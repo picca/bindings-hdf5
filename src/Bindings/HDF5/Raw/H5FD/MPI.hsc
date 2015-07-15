@@ -1,7 +1,7 @@
 #include <bindings.h>
 #include <H5FDmpi.h>
 #include "H5FDmpio.h"
-#include "H5FDmpiposix.h"
+-- #include "H5FDmpiposix.h" : Not compatible with latest brew hdf
 
 module Bindings.HDF5.Raw.H5FD.MPI where
 #strict_import

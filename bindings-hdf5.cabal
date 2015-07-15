@@ -21,12 +21,12 @@ source-repository head
 Library
   hs-source-dirs:       src
   extensions:           ForeignFunctionInterface, GeneralizedNewtypeDeriving
-  
+
   if os(linux) && arch(x86_64)
     -- Workaround for GHCi bug 781
     -- ( http://hackage.haskell.org/trac/ghc/ticket/781 )
     cc-options:     -fPIC
-  
+
   exposed-modules:      Bindings.HDF5.Raw
                         Bindings.HDF5.Raw.H5
                         Bindings.HDF5.Raw.H5A
@@ -56,10 +56,10 @@ Library
                         Bindings.HDF5.Raw.H5Z
                         Bindings.HDF5.Raw.Util
                         Foreign.Ptr.Conventions
-  
+
   if os(windows)
     exposed-modules:    Bindings.HDF5.H5FD.Windows
-  
+
   c-sources:            cbits/H5_inline.c
                         cbits/H5E_inline.c
                         cbits/H5FD_inline.c
@@ -68,12 +68,13 @@ Library
                         cbits/H5G_inline.c
                         cbits/H5P_inline.c
                         cbits/H5T_inline.c
-  
+
   build-depends:        base >= 3 && <5,
                         bindings-DSL >= 1.0.9 && < 1.1,
                         bytestring,
                         libffi,
-                        monad-peel,
+                        monad-control,
+                        lifted-base,
                         primitive,
                         transformers,
                         vector
