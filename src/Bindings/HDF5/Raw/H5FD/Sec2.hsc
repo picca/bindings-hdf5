@@ -19,12 +19,12 @@ import Bindings.HDF5.Raw.H5I
     = unsafePerformIO (#mangle_ident "H5FD_sec2_init")
 
 -- |Initialize this driver by registering the driver with the library.
--- 
+--
 -- > hid_t H5FD_sec2_init(void);
 #ccall H5FD_sec2_init, IO <hid_t>
 
 -- |Shut down the VFD.
--- 
+--
 -- > void H5FD_sec2_term(void);
 #ccall H5FD_sec2_term, IO ()
 

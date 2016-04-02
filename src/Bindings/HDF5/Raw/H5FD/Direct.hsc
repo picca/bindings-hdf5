@@ -33,12 +33,12 @@ import Foreign.Ptr.Conventions
 #num CBSIZE_DEF
 
 -- |Initialize this driver by registering the driver with the library.
--- 
+--
 -- > hid_t H5FD_direct_init(void);
 #ccall H5FD_direct_init, IO <hid_t>
 
 -- |Shut down the VFD.
--- 
+--
 -- > void H5FD_direct_term(void);
 #ccall H5FD_direct_term, IO ()
 
