@@ -2,12 +2,18 @@
 #include <H5Lpublic.h>
 
 module Bindings.HDF5.Raw.H5L where
-#strict_import
+
+import Data.Int
+import Data.Word
+import Foreign.C.String
+import Foreign.C.Types
+import Foreign.Marshal.Alloc
+import Foreign.Ptr
+import Foreign.Storable
 
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5I
 import Bindings.HDF5.Raw.H5T
-
 import Foreign.Ptr.Conventions
 
 -- |Maximum length of a link's name

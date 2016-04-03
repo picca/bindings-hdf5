@@ -2,15 +2,15 @@
 #include <H5FDcore.h>
 
 module Bindings.HDF5.Raw.H5FD.StdIO where
-#strict_import
 
+import Foreign.Ptr
 import System.IO.Unsafe (unsafePerformIO)
 
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5I
 
-import Foreign.Ptr.Conventions
-
+#mangle_ident "H5FD_STDIO"
+  :: HId_t
 #mangle_ident "H5FD_STDIO"
     = unsafePerformIO (#mangle_ident "H5FD_stdio_init")
 

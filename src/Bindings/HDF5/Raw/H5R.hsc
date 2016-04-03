@@ -2,14 +2,20 @@
 #include <H5Rpublic.h>
 
 module Bindings.HDF5.Raw.H5R where
-#strict_import
+
+import Data.ByteString
+import Data.Int
+import Data.Word
+import Foreign.C.String
+import Foreign.C.Types
+import Foreign.Ptr
+import Foreign.Storable
 
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5G
 import Bindings.HDF5.Raw.H5I
 import Bindings.HDF5.Raw.H5O
 
-import Data.ByteString
 
 import Foreign.Ptr.Conventions
 
@@ -29,14 +35,16 @@ import Foreign.Ptr.Conventions
 #num H5R_MAXTYPE
 
 #mangle_ident "H5R_OBJ_REF_BUF_SIZE"
+  :: CSize
+#mangle_ident "H5R_OBJ_REF_BUF_SIZE"
     = #const H5R_OBJ_REF_BUF_SIZE
-    :: CSize
 
 #newtype hobj_ref_t
 
 #mangle_ident "H5R_DSET_REG_REF_BUF_SIZE"
+  :: CSize
+#mangle_ident "H5R_DSET_REG_REF_BUF_SIZE"
     = #const H5R_DSET_REG_REF_BUF_SIZE
-    :: CSize
 
 -- |Buffer to store heap ID and index
 --

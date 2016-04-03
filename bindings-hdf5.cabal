@@ -82,3 +82,6 @@ Library
 
   include-dirs:         include
   pkgconfig-depends:    hdf5
+  ghc-options:         -Wall
+                       -- -Werror
+                       -- -fno-warn-name-shadowing

@@ -2,7 +2,13 @@
 #include <H5Fpublic.h>
 
 module Bindings.HDF5.Raw.H5F where
-#strict_import
+
+import Data.Int
+import Data.Word
+import Foreign.C.String
+import Foreign.C.Types
+import Foreign.Ptr
+import Foreign.Storable
 
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5AC

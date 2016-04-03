@@ -2,12 +2,15 @@
 #include <H5Apublic.h>
 
 module Bindings.HDF5.Raw.H5I where
-#strict_import
-
-import Bindings.HDF5.Raw.H5
 
 import Data.Bits
 import Data.Char
+import Data.Int
+import Foreign.C.Types
+import Foreign.Ptr
+import Foreign.Storable
+
+import Bindings.HDF5.Raw.H5
 import Foreign.Ptr.Conventions
 
 -- |Library type values
@@ -71,7 +74,7 @@ instance Show HId_t where
         ( showString "HId_t 0x"
         . showString
             [ intToDigit (fromIntegral digit)
-            | place <- [bitSize x - 4, bitSize x - 8 .. 0]
+            | place <- [finiteBitSize x - 4, finiteBitSize x - 8 .. 0]
             , let mask = 0xf `shiftL` place
             , let digit = ((x .&. mask) `shiftR` place) .&. 0xf
             ]

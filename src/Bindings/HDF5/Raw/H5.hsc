@@ -2,10 +2,14 @@ module Bindings.HDF5.Raw.H5 where
 #include <bindings.h>
 #include <H5public.h>
 
-#strict_import
-
 import Data.Bits
+import Data.Int
 import Data.Version
+import Data.Word
+import Foreign.C.Types
+import Foreign.Ptr
+import Foreign.Storable
+
 import Foreign.Ptr.Conventions
 
 -- *Version numbers

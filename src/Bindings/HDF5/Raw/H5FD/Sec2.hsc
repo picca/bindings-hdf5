@@ -8,13 +8,15 @@
 -- I/O from this driver with I/O from other parts of the
 -- application to the same file).
 module Bindings.HDF5.Raw.H5FD.Sec2 where
-#strict_import
 
+import Foreign.Ptr
 import System.IO.Unsafe (unsafePerformIO)
 
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5I
 
+#mangle_ident "H5FD_SEC2"
+  :: HId_t
 #mangle_ident "H5FD_SEC2"
     = unsafePerformIO (#mangle_ident "H5FD_sec2_init")
 

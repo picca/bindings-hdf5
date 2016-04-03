@@ -5,8 +5,9 @@
 -- only the HDF5 public API. This driver is useful for fast
 -- access to small, temporary hdf5 files.
 module Bindings.HDF5.Raw.H5FD.Core where
-#strict_import
 
+import Foreign.C.Types
+import Foreign.Ptr
 import System.IO.Unsafe (unsafePerformIO)
 
 import Bindings.HDF5.Raw.H5
@@ -15,11 +16,13 @@ import Bindings.HDF5.Raw.H5I
 import Foreign.Ptr.Conventions
 
 #mangle_ident "H5FD_CORE"
+  :: HId_t
+#mangle_ident "H5FD_CORE"
     = unsafePerformIO (#mangle_ident "H5FD_core_init")
 
 -- |Initialize this driver by registering the driver with the library.
 --
--- > hid_t H5FD_core_init(void);
+-- > hid_t H5FD_core_init(void);x
 #ccall H5FD_core_init, IO <hid_t>
 
 -- |Shut down the VFD.

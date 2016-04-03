@@ -6,18 +6,18 @@
 -- region being accessed. For instance, all meta-data could be
 -- placed in one file while all raw data goes to some other file.
 module Bindings.HDF5.Raw.H5FD.Multi where
-#strict_import
 
+import Foreign.C.String
+import Foreign.Ptr
 import System.IO.Unsafe (unsafePerformIO)
 
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5I
-import Bindings.HDF5.Raw.H5P
-import Bindings.HDF5.Raw.H5F
 import Bindings.HDF5.Raw.H5FD
-
 import Foreign.Ptr.Conventions
 
+#mangle_ident "H5FD_MULTI"
+  :: HId_t
 #mangle_ident "H5FD_MULTI"
     = unsafePerformIO (#mangle_ident "H5FD_multi_init")
 

@@ -2,11 +2,14 @@
 #include <H5Spublic.h>
 
 module Bindings.HDF5.Raw.H5S where
-#strict_import
+
+import Data.Int
+import Foreign.C.Types
+import Foreign.Ptr
+import Foreign.Storable
 
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5I
-
 import Foreign.Ptr.Conventions
 
 #newtype_const hid_t, H5S_ALL

@@ -2,7 +2,10 @@ module Bindings.HDF5.Raw.H5AC where
 #include <bindings.h>
 #include <H5ACpublic.h>
 
-#strict_import
+import Foreign.C.Types
+import Foreign.Marshal.Array
+import Foreign.Ptr
+import Foreign.Storable
 
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5C

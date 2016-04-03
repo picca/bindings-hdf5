@@ -2,7 +2,13 @@
 #include <H5Ppublic.h>
 
 module Bindings.HDF5.Raw.H5P where
-#strict_import
+
+import Data.Word
+import Foreign.C.String
+import Foreign.C.Types
+import Foreign.Ptr
+import Foreign.Storable
+import System.Posix.Types (COff(..))
 
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5AC
@@ -15,9 +21,7 @@ import Bindings.HDF5.Raw.H5MM
 import Bindings.HDF5.Raw.H5O
 import Bindings.HDF5.Raw.H5T
 import Bindings.HDF5.Raw.H5Z
-
 import Foreign.Ptr.Conventions
-import System.Posix.Types (COff(..))
 
 #cinline H5P_ROOT,                          <hid_t>
 #cinline H5P_OBJECT_CREATE,                 <hid_t>

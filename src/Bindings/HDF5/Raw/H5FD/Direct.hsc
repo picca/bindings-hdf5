@@ -5,15 +5,11 @@
 -- the file directly without being copied into system kernel
 -- buffer.  The main system supporting this feature is Linux.
 module Bindings.HDF5.Raw.H5FD.Direct where
-#strict_import
 
-import System.IO.Unsafe (unsafePerformIO)
-
-import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5I
 
-import Foreign.Ptr.Conventions
-
+#mangle_ident "H5FD_DIRECT"
+  :: HId_t
 #mangle_ident "H5FD_DIRECT"
 #ifdef H5_HAVE_DIRECT
     = unsafePerformIO (#mangle_ident "H5FD_direct_init")

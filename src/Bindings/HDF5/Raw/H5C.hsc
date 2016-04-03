@@ -2,9 +2,8 @@ module Bindings.HDF5.Raw.H5C where
 #include <bindings.h>
 #include <H5Cpublic.h>
 
-#strict_import
-
-import Bindings.HDF5.Raw.H5
+import Data.Word
+import Foreign.Storable
 
 #def typedef enum H5C_cache_incr_mode H5C_cache_incr_mode;
 #newtype H5C_cache_incr_mode, Eq

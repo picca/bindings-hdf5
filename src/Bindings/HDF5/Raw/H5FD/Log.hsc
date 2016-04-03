@@ -9,15 +9,17 @@
 -- application to the same file).
 --     With custom modifications...
 module Bindings.HDF5.Raw.H5FD.Log where
-#strict_import
 
+import Foreign.C.String
+import Foreign.C.Types
+import Foreign.Ptr
 import System.IO.Unsafe (unsafePerformIO)
 
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5I
 
-import Foreign.Ptr.Conventions
-
+#mangle_ident "H5FD_LOG"
+  :: HId_t
 #mangle_ident "H5FD_LOG"
     = unsafePerformIO (#mangle_ident "H5FD_log_init")
 

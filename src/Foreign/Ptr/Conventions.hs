@@ -12,10 +12,7 @@ import Foreign.ForeignPtr
 import Foreign.Storable
 
 import Control.Monad.IO.Class
-import Control.Monad.Primitive (RealWorld)
--- package: monad-trans
 import Control.Monad.Trans.Control
--- package: lifted-base
 import Control.Exception.Lifted
 
 import qualified Data.ByteString as BS
@@ -82,7 +79,7 @@ withMaybeOut f = liftBaseOp alloca $ \p -> do
 
 withOut_ :: (Storable a, MonadBaseControl IO m, MonadIO m) => (Out a -> m b) -> m a
 withOut_ f = liftBaseOp alloca $ \p -> do
-    f (Out p)
+    _ <- f (Out p)
     liftIO (peek p)
 
 withOutMVector :: (Storable a, MonadBaseControl IO m) => SVM.IOVector a -> (Int -> OutArray a -> m b) -> m b
@@ -101,7 +98,7 @@ withOutVector n f = do
 withOutVector_ :: (Storable a) => Int -> (OutArray a -> IO b) -> IO (SV.Vector a)
 withOutVector_ n f = do
     p <- liftIO (mallocForeignPtrArray n)
-    liftBaseOp (withForeignPtr p) (f . OutArray)
+    _ <- liftBaseOp (withForeignPtr p) (f . OutArray)
     return (SV.unsafeFromForeignPtr p 0 n)
 
 withOutVector' :: (Storable a, Integral b) => Int -> (OutArray a -> IO b) -> IO (SV.Vector a)
@@ -121,7 +118,7 @@ withOutList n f = do
 withOutList_ :: (Storable a, MonadIO m) => Int -> (OutArray a -> m b) -> m [a]
 withOutList_ n f = do
     p <- liftIO (mallocArray n)
-    f (OutArray p)
+    _ <- f (OutArray p)
     a <- liftIO (peekArray n p)
     liftIO (free p)
     return a
@@ -172,13 +169,13 @@ withInOut :: (Storable a, MonadBaseControl IO m, MonadIO m) => a -> (InOut a -> 
 withInOut a f = liftBaseOp alloca $ \p -> do
     liftIO (poke p a)
     b <- f (InOut p)
-    a <- liftIO (peek p)
-    return (a,b)
+    a_ <- liftIO (peek p)
+    return (a_,b)
 
 withInOut_ :: (Storable a, MonadBaseControl IO m, MonadIO m) => a -> (InOut a -> m b) -> m a
 withInOut_ a f = liftBaseOp alloca $ \p -> do
     liftIO (poke p a)
-    f (InOut p)
+    _ <- f (InOut p)
     liftIO (peek p)
 
 withInOutList :: (Storable a, MonadIO m) => Int -> [a] -> (InOutArray a -> m (Int, b)) -> m ([a], b)

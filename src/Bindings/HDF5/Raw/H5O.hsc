@@ -2,12 +2,16 @@
 #include <H5Apublic.h>
 
 module Bindings.HDF5.Raw.H5O where
-#strict_import
+
+import Data.Int
+import Data.Word
+import Foreign.C.String
+import Foreign.C.Types
+import Foreign.Ptr
+import Foreign.Storable
 
 import Bindings.HDF5.Raw.H5     -- Generic Functions
 import Bindings.HDF5.Raw.H5I    -- IDs
-import Bindings.HDF5.Raw.H5L    -- Links
-
 import Foreign.Ptr.Conventions
 
 -- * Constants

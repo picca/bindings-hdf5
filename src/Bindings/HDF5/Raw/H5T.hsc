@@ -3,12 +3,17 @@
 #include <H5Tpublic.h>
 
 module Bindings.HDF5.Raw.H5T where
-#strict_import
 
-import Foreign.Ptr.Conventions
+import Data.Int
+import Data.Word
+import Foreign.C.String
+import Foreign.C.Types
+import Foreign.Ptr
+import Foreign.Storable
 
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5I
+import Foreign.Ptr.Conventions
 
 -- |These are the various classes of datatypes
 --
@@ -447,6 +452,10 @@ type H5T_conv_except_func_t a userData = FunPtr
 
 -- ** Types for Intel CPUs.
 -- They are little endian with IEEE floating point.
+h5t_INTEL_I8, h5t_INTEL_I16, h5t_INTEL_I32, h5t_INTEL_I64 :: HId_t
+h5t_INTEL_U8, h5t_INTEL_U16, h5t_INTEL_U32, h5t_INTEL_U64 :: HId_t
+h5t_INTEL_B8, h5t_INTEL_B16, h5t_INTEL_B32, h5t_INTEL_B64 :: HId_t
+h5t_INTEL_F32, h5t_INTEL_F64 :: HId_t
 
 h5t_INTEL_I8  = h5t_STD_I8LE
 h5t_INTEL_I16 = h5t_STD_I16LE
@@ -466,6 +475,11 @@ h5t_INTEL_F64 = h5t_IEEE_F64LE
 -- ** Types for Alpha CPUs.
 -- They are little endian with IEEE floating point.
 
+h5t_ALPHA_I8, h5t_ALPHA_I16, h5t_ALPHA_I32, h5t_ALPHA_I64 :: HId_t
+h5t_ALPHA_U8, h5t_ALPHA_U16, h5t_ALPHA_U32, h5t_ALPHA_U64 :: HId_t
+h5t_ALPHA_B8, h5t_ALPHA_B16, h5t_ALPHA_B32, h5t_ALPHA_B64 :: HId_t
+h5t_ALPHA_F32, h5t_ALPHA_F64 :: HId_t
+
 h5t_ALPHA_I8  = h5t_STD_I8LE
 h5t_ALPHA_I16 = h5t_STD_I16LE
 h5t_ALPHA_I32 = h5t_STD_I32LE
@@ -483,6 +497,11 @@ h5t_ALPHA_F64 = h5t_IEEE_F64LE
 
 -- ** Types for MIPS CPUs.
 -- They are big endian with IEEE floating point.
+
+h5t_MIPS_I8, h5t_MIPS_I16, h5t_MIPS_I32, h5t_MIPS_I64 :: HId_t
+h5t_MIPS_U8, h5t_MIPS_U16, h5t_MIPS_U32, h5t_MIPS_U64 :: HId_t
+h5t_MIPS_B8, h5t_MIPS_B16, h5t_MIPS_B32, h5t_MIPS_B64 :: HId_t
+h5t_MIPS_F32, h5t_MIPS_F64 :: HId_t
 
 h5t_MIPS_I8  = h5t_STD_I8BE
 h5t_MIPS_I16 = h5t_STD_I16BE

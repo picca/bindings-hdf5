@@ -16,15 +16,17 @@
 -- can be quite time consuming on file systems that don't
 -- implement holes, like nfs).
 module Bindings.HDF5.Raw.H5FD.Family where
-#strict_import
 
 import System.IO.Unsafe (unsafePerformIO)
 
+import Foreign.Ptr
+
 import Bindings.HDF5.Raw.H5
 import Bindings.HDF5.Raw.H5I
-
 import Foreign.Ptr.Conventions
 
+#mangle_ident "H5FD_FAMILY"
+  :: HId_t
 #mangle_ident "H5FD_FAMILY"
     = unsafePerformIO (#mangle_ident "H5FD_family_init")
 
