@@ -20,7 +20,8 @@ source-repository head
 
 Library
   hs-source-dirs:       src
-  extensions:           ForeignFunctionInterface, GeneralizedNewtypeDeriving
+  extensions:           ForeignFunctionInterface
+                      , GeneralizedNewtypeDeriving
 
   if os(linux) && arch(x86_64)
     -- Workaround for GHCi bug 781
@@ -28,56 +29,56 @@ Library
     cc-options:     -fPIC
 
   exposed-modules:      Bindings.HDF5.Raw
-                        Bindings.HDF5.Raw.H5
-                        Bindings.HDF5.Raw.H5A
-                        Bindings.HDF5.Raw.H5AC
-                        Bindings.HDF5.Raw.H5C
-                        Bindings.HDF5.Raw.H5D
-                        Bindings.HDF5.Raw.H5E
-                        Bindings.HDF5.Raw.H5F
-                        Bindings.HDF5.Raw.H5FD
-                        Bindings.HDF5.Raw.H5FD.Core
-                        Bindings.HDF5.Raw.H5FD.Family
-                        Bindings.HDF5.Raw.H5FD.Log
-                        Bindings.HDF5.Raw.H5FD.MPI
-                        Bindings.HDF5.Raw.H5FD.Multi
-                        Bindings.HDF5.Raw.H5FD.Sec2
-                        Bindings.HDF5.Raw.H5FD.StdIO
-                        Bindings.HDF5.Raw.H5FD.Direct
-                        Bindings.HDF5.Raw.H5G
-                        Bindings.HDF5.Raw.H5I
-                        Bindings.HDF5.Raw.H5L
-                        Bindings.HDF5.Raw.H5MM
-                        Bindings.HDF5.Raw.H5O
-                        Bindings.HDF5.Raw.H5P
-                        Bindings.HDF5.Raw.H5R
-                        Bindings.HDF5.Raw.H5S
-                        Bindings.HDF5.Raw.H5T
-                        Bindings.HDF5.Raw.H5Z
-                        Bindings.HDF5.Raw.Util
-                        Foreign.Ptr.Conventions
+                      , Bindings.HDF5.Raw.H5
+                      , Bindings.HDF5.Raw.H5A
+                      , Bindings.HDF5.Raw.H5AC
+                      , Bindings.HDF5.Raw.H5C
+                      , Bindings.HDF5.Raw.H5D
+                      , Bindings.HDF5.Raw.H5E
+                      , Bindings.HDF5.Raw.H5F
+                      , Bindings.HDF5.Raw.H5FD
+                      , Bindings.HDF5.Raw.H5FD.Core
+                      , Bindings.HDF5.Raw.H5FD.Direct
+                      , Bindings.HDF5.Raw.H5FD.Family
+                      , Bindings.HDF5.Raw.H5FD.Log
+                      , Bindings.HDF5.Raw.H5FD.MPI
+                      , Bindings.HDF5.Raw.H5FD.Multi
+                      , Bindings.HDF5.Raw.H5FD.Sec2
+                      , Bindings.HDF5.Raw.H5FD.StdIO
+                      , Bindings.HDF5.Raw.H5G
+                      , Bindings.HDF5.Raw.H5I
+                      , Bindings.HDF5.Raw.H5L
+                      , Bindings.HDF5.Raw.H5MM
+                      , Bindings.HDF5.Raw.H5O
+                      , Bindings.HDF5.Raw.H5P
+                      , Bindings.HDF5.Raw.H5R
+                      , Bindings.HDF5.Raw.H5S
+                      , Bindings.HDF5.Raw.H5T
+                      , Bindings.HDF5.Raw.H5Z
+                      , Bindings.HDF5.Raw.Util
+                      , Foreign.Ptr.Conventions
 
   if os(windows)
     exposed-modules:    Bindings.HDF5.H5FD.Windows
 
-  c-sources:            cbits/H5_inline.c
-                        cbits/H5E_inline.c
-                        cbits/H5FD_inline.c
-                        cbits/H5FD_inline.c
-                        cbits/H5FDmpi_inline.c
-                        cbits/H5G_inline.c
-                        cbits/H5P_inline.c
-                        cbits/H5T_inline.c
+  c-sources:            cbits/H5E_inline.c
+                      , cbits/H5FD_inline.c
+                      , cbits/H5FD_inline.c
+                      , cbits/H5FDmpi_inline.c
+                      , cbits/H5G_inline.c
+                      , cbits/H5P_inline.c
+                      , cbits/H5T_inline.c
+                      , cbits/H5_inline.c
 
-  build-depends:        base >= 3 && <5,
-                        bindings-DSL >= 1.0.9 && < 1.1,
-                        bytestring,
-                        libffi,
-                        monad-control,
-                        lifted-base,
-                        primitive,
-                        transformers,
-                        vector
+  build-depends:        base >= 3 && <5
+                      , bindings-DSL >= 1.0.9 && < 1.1
+                      , bytestring
+                      , libffi
+                      , lifted-base
+                      , monad-control
+                      , primitive
+                      , transformers
+                      , vector
 
   include-dirs:         include
   pkgconfig-depends:    hdf5
