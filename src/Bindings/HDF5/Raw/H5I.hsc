@@ -79,6 +79,10 @@ instance Show HId_t where
             , let digit = ((x .&. mask) `shiftR` place) .&. 0xf
             ]
         )
+#if __HASKELL_VERSION__ < 710
+      where
+        finiteBitSize = bitSize
+#endif
 
 h5_SIZEOF_HID_T :: CSize
 h5_SIZEOF_HID_T = #const H5_SIZEOF_HID_T
