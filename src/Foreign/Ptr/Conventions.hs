@@ -83,7 +83,7 @@ withOut_ f = liftBaseOp alloca $ \p -> do
     liftIO (peek p)
 
 withOutMVector :: (Storable a, MonadBaseControl IO m) => SVM.IOVector a -> (Int -> OutArray a -> m b) -> m b
-withOutMVector vec f = do
+withOutMVector vec f =
     liftBaseOp (SVM.unsafeWith vec) (f (SVM.length vec) . OutArray)
 
 withOutVector :: (Storable a, MonadBaseControl IO m, MonadIO m) => Int -> (OutArray a -> m b) -> m (SV.Vector a, b)
