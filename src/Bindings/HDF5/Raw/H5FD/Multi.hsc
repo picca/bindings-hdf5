@@ -1,5 +1,5 @@
 #include <bindings.h>
-#include <H5FDcore.h>
+#include <hdf5.h>
 
 -- |H5FDmulti Implements a file driver which dispatches I/O requests to
 -- other file drivers depending on the purpose of the address

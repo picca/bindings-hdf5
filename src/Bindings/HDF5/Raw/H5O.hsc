@@ -598,6 +598,25 @@ type H5O_mcdt_search_cb_t a = FunPtr (InOut a -> IO H5O_mcdt_search_ret_t)
 -- > herr_t H5Oclose(hid_t object_id);
 #ccall H5Oclose, <hid_t> -> IO <herr_t>
 
+#if H5_VERSION_GE(1,10,0)
+
+-- > herr_t H5Oflush(hid_t obj_id);
+#ccall H5Oflush, <hid_t> -> IO <herr_t>
+
+-- > herr_t H5Orefresh(hid_t oid);
+#ccall H5Orefresh, <hid_t> -> IO <herr_t>
+
+-- > herr_t H5Odisable_mdc_flushes(hid_t object_id);
+#ccall H5Odisable_mdc_flushes, <hid_t> -> IO <herr_t>
+
+-- > herr_t H5Oenable_mdc_flushes(hid_t object_id);
+#ccall H5Oenable_mdc_flushes, <hid_t> -> IO <herr_t>
+
+-- > herr_t H5Oare_mdc_flushes_disabled(hid_t object_id, hbool_t *are_disabled);
+#ccall H5Oare_mdc_flushes_disabled, <hid_t> -> Out hbool_t -> IO <herr_t>
+
+#endif
+
 #ifndef H5_NO_DEPRECATED_SYMBOLS
 
 -- * Deprecated types

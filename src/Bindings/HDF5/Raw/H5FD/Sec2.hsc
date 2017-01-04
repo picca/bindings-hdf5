@@ -1,5 +1,5 @@
 #include <bindings.h>
-#include <H5FDcore.h>
+#include <hdf5.h>
 
 -- |The POSIX unbuffered file driver using only the HDF5 public
 -- API and with a few optimizations: the lseek() call is made

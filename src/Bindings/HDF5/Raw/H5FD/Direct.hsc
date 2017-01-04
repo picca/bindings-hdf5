@@ -1,5 +1,5 @@
 #include <bindings.h>
-#include <H5FDcore.h>
+#include <hdf5.h>
 
 -- |The Direct I/O file driver forces the data to be written to
 -- the file directly without being copied into system kernel

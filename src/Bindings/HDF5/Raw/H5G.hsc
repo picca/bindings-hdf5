@@ -164,6 +164,12 @@ import Foreign.Ptr.Conventions
 -- > herr_t H5Gclose(hid_t group_id);
 #ccall H5Gclose, <hid_t> -> IO <herr_t>
 
+#if H5_VERSION_GE(1,10,0)
+-- > herr_t H5Gflush(hid_t group_id);
+#ccall H5Gflush, <hid_t> -> IO <herr_t>
+-- > herr_t H5Grefresh(hid_t group_id);
+#ccall H5Grefresh, <hid_t> -> IO <herr_t>
+#endif
 
 #ifndef H5_NO_DEPRECATED_SYMBOLS
 

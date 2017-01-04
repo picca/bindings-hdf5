@@ -1,5 +1,5 @@
 #include <bindings.h>
-#include <H5FDfamily.h>
+#include <hdf5.h>
 
 -- |Implements a family of files that acts as a single hdf5
 -- file.  The purpose is to be able to split a huge file on a

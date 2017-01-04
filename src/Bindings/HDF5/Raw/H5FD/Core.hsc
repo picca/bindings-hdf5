@@ -1,5 +1,5 @@
 #include <bindings.h>
-#include <H5FDcore.h>
+#include <hdf5.h>
 
 -- |A driver which stores the HDF5 data in main memory using
 -- only the HDF5 public API. This driver is useful for fast
