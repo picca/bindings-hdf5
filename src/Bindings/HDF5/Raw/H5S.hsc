@@ -420,6 +420,16 @@ import Foreign.Ptr.Conventions
 -- > htri_t H5Sselect_valid(hid_t spaceid);
 #ccall H5Sselect_valid, <hid_t> -> IO <htri_t>
 
+#if H5_VERSION_GE(1,10,0)
+
+-- > htri_t H5Sis_regular_hyperslab(hid_t spaceid);
+#ccall H5Sis_regular_hyperslab, <hid_t> -> IO <htri_t>
+-- > htri_t H5Sget_regular_hyperslab(hid_t spaceid, hsize_t start[],
+-- >     hsize_t stride[], hsize_t count[], hsize_t block[]);
+#ccall H5Sget_regular_hyperslab, <hid_t> -> InArray <hsize_t> -> InArray <hsize_t> -> InArray <hsize_t> -> InArray <hsize_t> -> IO <htri_t>
+
+#endif
+
 -- |Get the number of hyperslab blocks in current hyperslab selection
 --
 -- Returns negative on failure
@@ -524,4 +534,3 @@ import Foreign.Ptr.Conventions
 
 -- H5S_sel_type H5Sget_select_type(hid_t spaceid);
 #ccall H5Sget_select_type, <hid_t> -> IO <H5S_sel_type>
-
