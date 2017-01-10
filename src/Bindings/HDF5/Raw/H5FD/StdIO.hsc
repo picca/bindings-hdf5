@@ -19,10 +19,14 @@ import Bindings.HDF5.Raw.H5I
 -- > hid_t H5FD_stdio_init(void);
 #ccall H5FD_stdio_init, IO <hid_t>
 
+#if H5_VERSION_LE(1,10,0)
+
 -- |Shut down the VFD.
 --
 -- > void H5FD_stdio_term(void);
 #ccall H5FD_stdio_term, IO ()
+
+#endif
 
 -- |Modify the file access property list to use the H5FD_STDIO
 -- driver.  There are no driver-specific properties.
