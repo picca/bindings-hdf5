@@ -1,12 +1,12 @@
 name:                   bindings-hdf5
-version:                1.8.12
+version:                1.10.0
 stability:              provisional
 
 cabal-version:          >= 1.6
 build-type:             Simple
 
 author:                 James Cook <mokus@deepbondi.net>
-maintainer:             James Cook <mokus@deepbondi.net>
+maintainer:             Picca Frédéric-Emmanuel <picca@synchrotron-soleil.fr>
 license:                PublicDomain
 homepage:               https://github.com/mokus0/bindings-hdf5
 
