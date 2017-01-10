@@ -1658,9 +1658,9 @@ type H5P_iterate_t a = FunPtr (HId_t -> CString -> InOut a -> IO HErr_t)
 
 #ifdef H5_HAVE_PARALLEL
 -- > herr_t H5Pset_coll_metadata_read(hid_t plist_id, hbool_t is_collective);
-#ccall H5Pset_coll_metadata_read, <hid_t> -> <hbool_t> -> IO <herr_t>
+#ccall H5Pset_all_coll_metadata_ops, <hid_t> -> <hbool_t> -> IO <herr_t>
 -- > herr_t H5Pget_coll_metadata_read(hid_t plist_id, hbool_t *is_collective);
-#ccall H5Pget_coll_metadata_read, <hid_t> -> Out <hbool_t> -> IO <herr_t>
+#ccall H5Pget_all_coll_metadata_ops, <hid_t> -> Out <hbool_t> -> IO <herr_t>
 -- > herr_t H5Pset_coll_metadata_write(hid_t plist_id, hbool_t is_collective);
 #ccall H5Pset_coll_metadata_write, <hid_t> -> <hbool_t> -> IO <herr_t>
 -- > herr_t H5Pget_coll_metadata_write(hid_t plist_id, hbool_t *is_collective);
@@ -1963,6 +1963,10 @@ type H5P_iterate_t a = FunPtr (HId_t -> CString -> InOut a -> IO HErr_t)
 -- > +H5_DLL herr_t H5Pget_append_flush(hid_t plist_id, unsigned dims,
 -- > +    hsize_t boundary[], H5D_append_cb_t *func, void **udata);
 #ccall H5Pget_append_flush, <hid_t> -> CUInt -> In <hsize_t> -> H5D_append_cb_t a -> Out (Out a) -> IO <herr_t>
+-- > herr_t H5Pset_efile_prefix(hid_t dapl_id, const char* prefix);
+#ccall H5Pset_efile_prefix, <hid_t> -> CString -> IO <herr_t>
+-- > ssize_t H5Pget_efile_prefix(hid_t dapl_id, char* prefix /*out*/, size_t size);
+#ccall H5Pget_efile_prefix, <hid_t> -> Out CString -> <size_t> -> IO <ssize_t>
 
 #endif
 
