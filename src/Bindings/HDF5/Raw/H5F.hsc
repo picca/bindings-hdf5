@@ -612,6 +612,9 @@ type H5F_flush_cb_t a = FunPtr (HId_t -> InOut a -> IO HErr_t)
 -- >                                  /*OUT*/ hbool_t *is_currently_logging);
 #ccall H5Fget_mdc_logging_status, <hid_t> -> Out hbool_t -> Out hbool_t -> IO <herr_t>
 
+-- > herr_t H5Fformat_convert_super(hid_t fid);
+#ccall H5Fformat_convert_super, <hid_t> -> IO <herr_t>
+
 #else
 -- > herr_t H5Fget_info(hid_t obj_id, H5F_info_t *bh_info);
 #ccall H5Fget_info, <hid_t> -> Out H5F_info_t -> IO <herr_t>

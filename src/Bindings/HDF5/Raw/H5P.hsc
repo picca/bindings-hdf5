@@ -57,6 +57,11 @@ import Foreign.Ptr.Conventions
 #cinline H5P_LINK_CREATE_DEFAULT,           <hid_t>
 #cinline H5P_LINK_ACCESS_DEFAULT,           <hid_t>
 
+#if H5_VERSION_GE(1,10,0)
+#cinline H5P_ATTRIBUTE_ACCESS, 		    <hid_t>
+#cinline H5P_ATTRIBUTE_ACCESS_DEFAULT,	    <hid_t>
+#endif
+
 -- |Default value for all property list classes
 #newtype_const hid_t, H5P_DEFAULT
 
@@ -1650,6 +1655,17 @@ type H5P_iterate_t a = FunPtr (HId_t -> CString -> InOut a -> IO HErr_t)
 #ccall H5Pset_mdc_log_options, <hid_t> -> <hbool_t> -> CString -> <hbool_t> -> IO <herr_t>
 -- > herr_t H5Pget_mdc_log_options(hid_t plist_id, hbool_t *is_enabled, char *location, size_t *location_size, hbool_t *start_on_access);
 #ccall H5Pget_mdc_log_options, <hid_t> -> Out <hbool_t> -> Out CString -> Out <size_t> -> Out <hbool_t> -> IO <herr_t>
+
+#ifdef H5_HAVE_PARALLEL
+-- > herr_t H5Pset_coll_metadata_read(hid_t plist_id, hbool_t is_collective);
+#ccall H5Pset_coll_metadata_read, <hid_t> -> <hbool_t> -> IO <herr_t>
+-- > herr_t H5Pget_coll_metadata_read(hid_t plist_id, hbool_t *is_collective);
+#ccall H5Pget_coll_metadata_read, <hid_t> -> Out <hbool_t> -> IO <herr_t>
+-- > herr_t H5Pset_coll_metadata_write(hid_t plist_id, hbool_t is_collective);
+#ccall H5Pset_coll_metadata_write, <hid_t> -> <hbool_t> -> IO <herr_t>
+-- > herr_t H5Pget_coll_metadata_write(hid_t plist_id, hbool_t *is_collective);
+#ccall H5Pget_coll_metadata_write, <hid_t> -> Out <hbool_t> -> IO <herr_t>
+#endif /* H5_HAVE_PARALLEL */
 
 #endif
 
