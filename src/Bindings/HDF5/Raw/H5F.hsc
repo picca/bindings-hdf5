@@ -615,9 +615,8 @@ type H5F_flush_cb_t a = FunPtr (HId_t -> InOut a -> IO HErr_t)
 -- > herr_t H5Fformat_convert(hid_t fid);
 #ccall H5Fformat_convert, <hid_t> -> IO <herr_t>
 
-#else
--- > herr_t H5Fget_info(hid_t obj_id, H5F_info_t *bh_info);
-#ccall H5Fget_info, <hid_t> -> Out H5F_info_t -> IO <herr_t>
+-- > herr_t H5Fget_info1(hid_t obj_id, H5F_info1_t *bh_info);
+#ccall H5Fget_info1, <hid_t> -> Out H5F_info1_t -> IO <herr_t>
 
 #endif
 
@@ -655,3 +654,71 @@ type H5F_flush_cb_t a = FunPtr (HId_t -> InOut a -> IO HErr_t)
 #stoptype
 
 #endif
+
+#if (H5_VERSION_GE(1,10,0) && (H5Fget_info_vers == 1)) || H5_VERSION_LE(1,8,18)
+
+-- |Current "global" information about file
+-- (just size info currently)
+#starttype H5F_info_t
+
+-- |Superblock extension size
+#field super_ext_size,  <hsize_t>
+
+-- |Shared object header message header size
+#field sohm.hdr_size,   <hsize_t>
+
+-- |Shared object header message index & heap size
+#field sohm.msgs_info,  <H5_ih_info_t>
+ 
+#stoptype
+
+#else
+
+-- |Current "global" information about file
+-- (just size info currently)
+#starttype H5F_info_t
+
+-- |Superblock version
+#field super.version,  CUInt
+
+-- |Superblock size
+#field super.super_size, <hsize_t>
+
+-- |Superblock extension size
+#field super.super_ext_size, <hsize_t>
+
+-- |Version # of file free space management
+#field free.version, CUInt
+
+-- |Free space manager metadata size
+#field free.meta_size, <hsize_t>
+
+-- |Amount of free space in the file
+#field free.tot_space, <hsize_t>
+
+-- |Version # of shared object header info
+#field sohm.version, CUInt
+
+-- |Shared object header message header size
+#field sohm.hdr_size, <hsize_t>
+
+-- |Shared object header message index & heap size
+#field sohm.msgs_info, <H5_ih_info_t>
+
+#stoptype
+
+#endif
+
+
+#if H5_VERSION_GE(1,8,10)
+#if (H5Fget_info_vers == 1)
+foreign import ccall unsafe "H5Fget_info1" h5f_get_info
+#else
+foreign import ccall unsafe "H5Fget_info2" h5f_get_info
+#endif
+#else
+foreign import ccall unsafe "H5Fget_info" h5f_get_info
+#endif
+  :: HId_t -> Out H5F_info_t -> IO HErr_t
+
+

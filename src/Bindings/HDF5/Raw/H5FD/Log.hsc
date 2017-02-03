@@ -64,10 +64,12 @@ import Bindings.HDF5.Raw.H5I
 -- > hid_t H5FD_log_init(void);
 #ccall H5FD_log_init, IO <hid_t>
 
+#if H5_VERSION_LE(1,8,18)
 -- |Shut down the VFD.
 --
 -- > void H5FD_log_term(void);
 #ccall H5FD_log_term, IO ()
+#endif
 
 -- TODO: evaluate the claim that "There are no driver-specific properties."  It appears to be patently false.
 -- |Modify the file access property list to use the H5FD_LOG

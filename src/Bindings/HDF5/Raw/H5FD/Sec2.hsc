@@ -25,11 +25,13 @@ import Bindings.HDF5.Raw.H5I
 -- > hid_t H5FD_sec2_init(void);
 #ccall H5FD_sec2_init, IO <hid_t>
 
+#if H5_VERSION_LE(1,8,18)
 -- |Shut down the VFD.
 --
 -- > void H5FD_sec2_term(void);
 #ccall H5FD_sec2_term, IO ()
-
+#endif
+ 
 -- |Modify the file access property list to use the H5FD_SEC2
 -- driver.  There are no driver-specific properties.
 --
