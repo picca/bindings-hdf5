@@ -19,6 +19,7 @@ Build-Depends: debhelper (>= 7.0)
                , libghc-primitive-prof
                , libghc-vector-dev
                , libghc-vector-prof
+               , libhdf5-dev
 Build-Depends-Indep: ghc-doc
                      , libghc-libffi-doc
                      , libghc-lifted-base-doc
